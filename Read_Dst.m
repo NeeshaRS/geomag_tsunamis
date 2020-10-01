@@ -8,14 +8,14 @@
 clc
 
 % Load the complete .dat file
-TA06=load('WWW_dstae00027263.dat');
+KI07=load('WWW_dstae00027292.dat');
 
 % Save the last 2 digits of the year
-year=TA06(:,1);
+year=KI07(:,1);
 % Save the month info
-month=TA06(:,2);
+month=KI07(:,2);
 % Save the day info
-day=TA06(:,3);
+day=KI07(:,3);
 
 
 % Use these to create time points
@@ -29,61 +29,50 @@ for i=1:length(year)
 end
 
 % Load the Dst 
-Dst_06_TA=zeros(24*length(year),1);
+Dst_07_KI=zeros(24*length(year),1);
 a=1;
-for i=1:length(TA06)
+for i=1:length(KI07)
     for j=0:23
-        Dst_06_TA(a)=TA06(i,6+j); 
+        Dst_07_KI(a)=KI07(i,6+j); 
         a=a+1;
     end
 end
 
 %% Plot the Dst indices
-TsuTime=datenum('2006-05-03 15:26:40');
+TsuTime=datenum('2007-01-13 04:23:21');
 
 figure(1)
-plot(time,Dst_06_TA)
+plot(time,Dst_07_KI)
 set(gca,'FontSize',16)
-set(gca,'XTickLabel',{'11/01/05', '02/08/06', '05/18/06', '08/25/06', '12/01/06'},...
+set(gca,'XTickLabel',{'06/01/06', '09/08/06', '12/16/06', '03/25/07', '7/01/07'},...
     'XTick',[time(1) time(2377) time(4753) time(7129) time(end)])
-axis([time(1) time(end) -100 40]);
+axis([time(1) time(end) -170 40]);
 xlabel('Date')
 ylabel('Dst Index (nT)')
 title('Global Dst Indices')
-line([TsuTime TsuTime],[-100 40],'LineStyle','--','Color',[0 0 0],'LineWidth',2)
+line([TsuTime TsuTime],[-170 40],'LineStyle','--','Color',[0 0 0],'LineWidth',2)
 line([time(1) time(end)],[-50 -50],'LineStyle','--','Color',[1 0 0],'LineWidth',2)
 line([time(1) time(end)],[0 0],'LineStyle','--','Color',[0 1 0],'LineWidth',2)
+
+save Dst_07_KI.mat Dst_07_KI
 
 %% Plot the Dst indices with the wavelet peaks
-load ZPeaks_T13_06_TA
-load ZPeaks_T14_06_TA
-load ZPeaks_T15_06_TA
+load ZPeaks_T18_07_KI
 
 figure(2)
-plot(time,Dst_06_TA)
+plot(time,Dst_07_KI)
 set(gca,'FontSize',16)
-set(gca,'XTickLabel',{'4/26', '4/28', '4/30','5/2','5/4','5/6',...
-    '5/8','5/10','5/12'},...
-    'XTick',[732793 732795 732797 732799 732801 732803 ...
-    732805 732807 732809])
-axis([732793 732809 -60 40]);
-
-line([TsuTime TsuTime],[-100 40],'LineStyle','--','Color',[0 0 0],'LineWidth',2)
-line([time(1) time(end)],[-50 -50],'LineStyle','--','Color',[1 0 0],'LineWidth',2)
-line([time(1) time(end)],[0 0],'LineStyle','--','Color',[0 1 0],'LineWidth',2)
-
+axis([733047 733063 -40 10]);
+set(gca,'XTickLabel',{'1/5','1/7','1/9','1/11','1/13',...
+    '1/15','1/17','1/19','1/21'},...
+    'XTick',[733047 733049 733051 733053 733055 733057 733059 733061 733063])
 xlabel('Date')
 ylabel('Dst Index (nT)')
 title('Global Dst Indices')
+line([TsuTime TsuTime],[-170 40],'LineStyle','--','Color',[0 0 0],'LineWidth',2)
+line([time(1) time(end)],[-50 -50],'LineStyle','--','Color',[1 0 0],'LineWidth',2)
+line([time(1) time(end)],[0 0],'LineStyle','--','Color',[0 1 0],'LineWidth',2)
 
-% for i=1:length(ZPeaks_T13_06_TA)
-%    line([ZPeaks_T13_06_TA(i) ZPeaks_T13_06_TA(i)],[-100 40],'LineStyle','--','Color',[0 0 0],'LineWidth',1) 
-% end
-% for i=1:length(ZPeaks_T14_06_TA)
-%    line([ZPeaks_T14_06_TA(i) ZPeaks_T14_06_TA(i)],[-100 40],'LineStyle','--','Color',[0 0 0],'LineWidth',1) 
-% end
-for i=1:length(ZPeaks_T15_06_TA)
-   line([ZPeaks_T15_06_TA(i) ZPeaks_T15_06_TA(i)],[-100 40],'LineStyle','--','Color',[0 0 0],'LineWidth',1) 
+for i=1:length(ZPeaks_T18_07_KI)
+   line([ZPeaks_T18_07_KI(i) ZPeaks_T18_07_KI(i)],[-100 40],'LineStyle','--','Color',[0 0 0],'LineWidth',1) 
 end
-
-save Dst_06_TA.mat Dst_06_TA
