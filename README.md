@@ -18,11 +18,15 @@ of the magnetic field data.
 
 > No special naming convention is given to denote scripts that are functions.
 
+> CBI = Chichijima geomagnetic observatory (find at http://www.wdc.bgs.ac.uk/catalog/master.html)
+
 > CWA = cross-wavelet analysis
 
 > HPF = high pass filter
 
-> KAK = Kakioka intermagnetic observatory: https://www.intermagnet.org/imos/imos-list/imos-details-eng.php?iaga_code=KAK
+> KAK = Kakioka geomagnetic observatory (find at http://www.wdc.bgs.ac.uk/catalog/master.html)
+
+> MMB = Memambetsu geomagnetic observatory (find at http://www.wdc.bgs.ac.uk/catalog/master.html)
 
 > OBEM = ocean-bottom electromagnetic station
 
