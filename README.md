@@ -4,6 +4,12 @@ Codes relevant to studying the electromagnetic fields from tsunamis.
 These codes were written in 2012-2015 by Neesha R. Schnepf. If you use these codes for scientific 
 research, please cite the below reference(s).
 
+References (read to understand the methodology / aims):
+
+N. R. Schnepf, C. Manoj, C. An, H. Sugioka, H. Toh (2016). Time-frequency characteristics of 
+tsunami magnetic signals from four Pacific Ocean events. Pure & Applied Geophysics, 1-19, 
+(doi:10.1007/s00024-016-1345-5).
+
 Notes on conventions: 
 
 > "F", "H", and "Z" denote the scalar field, horizontal field, and vertical field components. 
@@ -16,10 +22,6 @@ of the magnetic field data.
 
 > HPF = high pass filter
 
+> KAK = Kakioka intermagnetic observatory: https://www.intermagnet.org/imos/imos-list/imos-details-eng.php?iaga_code=KAK
+
 > OBEM = ocean-bottom electromagnetic station
-
-References (read to understand the methodology / aims):
-
-N. R. Schnepf, C. Manoj, C. An, H. Sugioka, H. Toh (2016). Time-frequency characteristics of 
-tsunami magnetic signals from four Pacific Ocean events. Pure & Applied Geophysics, 1-19, 
-(doi:10.1007/s00024-016-1345-5).
