@@ -12,10 +12,11 @@ of the magnetic field data.
 
 > No special naming convention is given to denote scripts that are functions.
 
-> HPF = high pass filter
-
 > CWA = cross-wavelet analysis
 
+> HPF = high pass filter
+
+> OBEM = ocean-bottom electromagnetic station
 
 References (read to understand the methodology / aims):
 
