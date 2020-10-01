@@ -9,8 +9,11 @@ Notes on conventions:
 > "F", "H", and "Z" denote the scalar field, horizontal field, and vertical field components. 
 When a script starts with "F", "H", or "Z" it means that script is being applied to that component 
 of the magnetic field data. 
+
 > No special naming convention is given to denote scripts that are functions.
+
 > HPF = high pass filter
+
 > CWA = cross-wavelet analysis
 
 
