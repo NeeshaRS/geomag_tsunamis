@@ -25,3 +25,5 @@ of the magnetic field data.
 > KAK = Kakioka intermagnetic observatory: https://www.intermagnet.org/imos/imos-list/imos-details-eng.php?iaga_code=KAK
 
 > OBEM = ocean-bottom electromagnetic station
+
+> OBEM data was received from H. Toh and H. Sugioka. These different OBEMs are denoted as NWP, T18, and SOC1-9.
