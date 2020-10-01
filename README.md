@@ -1,7 +1,7 @@
 # geomag_tsunamis
 Codes relevant to studying the electromagnetic fields from tsunamis.
 
-These codes were written in 2012-2015 by Neesha R. Schnepf. If you use these codes for scientific 
+These codes were written in 2012-2017 by Neesha R. Schnepf. If you use these codes for scientific 
 research, please cite the below reference(s).
 
 References (read to understand the methodology / aims):
@@ -16,7 +16,8 @@ Notes on conventions:
 When a script starts with "F", "H", or "Z" it means that script is being applied to that component 
 of the magnetic field data. 
 
-> No special naming convention is given to denote scripts that are functions.
+> Special naming convention is given to denote scripts that are functions, however, this starts with
+  scripts made after 2015. Function scripts are denoted as "F_*.m"
 
 > CBI = Chichijima geomagnetic observatory (find at http://www.wdc.bgs.ac.uk/catalog/master.html)
 
