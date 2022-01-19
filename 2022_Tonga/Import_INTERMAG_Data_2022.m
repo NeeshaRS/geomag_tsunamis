@@ -1,7 +1,7 @@
 %% Clear parameters and set basics
 clc; clear all;
 
-addpath('tsunami_library')
+addpath('../tsunami_library')
 
 daymin = 24*60;
 daysec = daymin*60;
@@ -22,7 +22,7 @@ days= 15; %:16;
 
 %% KNY: remote for KAK, MMB, and CHI
 station = 'kny';
-datapath = '../../Data/INTERMAGNET/KNY/provisional/2022/01/';
+datapath = '../../../Data/INTERMAGNET/KNY/provisional/2022/01/';
 timeres = 'min';
 dtype = 'p';
 num_header = 20;
@@ -35,7 +35,7 @@ num_header = 20;
 
 %% KAK
 station = 'kak';
-datapath = '../../Data/INTERMAGNET/KAK/provisional/2022/01/';
+datapath = '../../../Data/INTERMAGNET/KAK/provisional/2022/01/';
 timeres = 'min';
 dtype = 'p';
 num_header = 20;
@@ -48,7 +48,7 @@ num_header = 20;
 
 %% MMB
 station = 'mmb';
-datapath = '../../Data/INTERMAGNET/MMB/provisional/2022/01/';
+datapath = '../../../Data/INTERMAGNET/MMB/provisional/2022/01/';
 timeres = 'min';
 dtype = 'p';
 num_header = 20;
@@ -61,7 +61,7 @@ num_header = 20;
 
 %% CNB
 station = 'cnb';
-datapath = '../../Data/INTERMAGNET/CNB/provisional/2022/01/';
+datapath = '../../../Data/INTERMAGNET/CNB/provisional/2022/01/';
 timeres = 'min';
 dtype = 'p';
 num_header = 22;
@@ -74,7 +74,7 @@ num_header = 22;
 
 %% API
 station = 'api';
-datapath = '../../Data/INTERMAGNET/API/provisional/2022/01/';
+datapath = '../../../Data/INTERMAGNET/API/provisional/2022/01/';
 timeres = 'min';
 dtype = 'p';
 num_header = 22;
@@ -87,7 +87,7 @@ num_header = 22;
 
 %% PPT
 station = 'ppt';
-datapath = '../../Data/INTERMAGNET/PPT/variational/2022/01/';
+datapath = '../../../Data/INTERMAGNET/PPT/variational/2022/01/';
 timeres = 'min';
 dtype = 'v';
 num_header = 25;
@@ -100,7 +100,7 @@ num_header = 25;
 
 %% IPM
 station = 'ipm';
-datapath = '../../Data/INTERMAGNET/IPM/variational/2022/01/';
+datapath = '../../../Data/INTERMAGNET/IPM/variational/2022/01/';
 timeres = 'sec';
 dtype = 'v';
 num_header = 23;
