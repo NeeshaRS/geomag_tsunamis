@@ -55,3 +55,5 @@ disp('...Vector data read in to matlab arrays.')
 Bh = (Bx.^2+By.^2).^.5;
 disp('...Horiztonal component made.')
 
+end
+

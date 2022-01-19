@@ -8,7 +8,7 @@ daysec = daymin*60;
 
 % time period of interest
 time1 = datenum('01-15-2022 00:00:00');
-timeE = datenum('01-16-2022 23:59:59');
+timeE = datenum('01-15-2022 23:59:59');
 
 % build time arrays
 time_s = time1:1/daysec:timeE;
@@ -18,7 +18,20 @@ disp('Time arrays made.')
 % time data for finding data files
 year = '2022';
 month = '01';
-days= 15:16;
+days= 15; %:16;
+
+%% KNY: remote for KAK, MMB, and CHI
+station = 'kny';
+datapath = '../../Data/INTERMAGNET/KNY/provisional/2022/01/';
+timeres = 'min';
+dtype = 'p';
+num_header = 20;
+
+[knyX, knyY, knyZ, knyH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% plot KNY
+[hzplot] = F_HZ_plot(time_min, knyH, knyZ)
 
 %% KAK
 station = 'kak';
@@ -31,12 +44,33 @@ num_header = 20;
     dtype, year, month, days, num_header);
 
 %% plot KAK
-figure(1)
-subplot(211)
-plot(time_min, kakZ)
+[hzplot] = F_HZ_plot(time_min, kakH, kakZ)
 
-subplot(212)
-plot(time_min, kakH)
+%% MMB
+station = 'mmb';
+datapath = '../../Data/INTERMAGNET/MMB/provisional/2022/01/';
+timeres = 'min';
+dtype = 'p';
+num_header = 20;
+
+[mmbX, mmbY, mmbZ, mmbH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% plot MMB
+[hzplot] = F_HZ_plot(time_min, mmbH, mmbZ)
+
+%% CNB
+station = 'cnb';
+datapath = '../../Data/INTERMAGNET/CNB/provisional/2022/01/';
+timeres = 'min';
+dtype = 'p';
+num_header = 22;
+
+[cnbX, cnbY, cnbZ, cnbH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% plot CNB
+[hzplot] = F_HZ_plot(time_min, cnbH, cnbZ)
 
 %% API
 station = 'api';
@@ -49,29 +83,7 @@ num_header = 22;
     dtype, year, month, days, num_header);
 
 %% plot API
-figure(1)
-subplot(211)
-plot(time_min, apiZ)
-
-subplot(212)
-plot(time_min, apiH)
-%% MMB
-station = 'mmb';
-datapath = '../../Data/INTERMAGNET/MMB/provisional/2022/01/';
-timeres = 'min';
-dtype = 'p';
-num_header = 20;
-
-[mmbX, mmbY, mmbZ, mmbH] = F_load_INTERMAG(station, datapath, timeres, ...
-    dtype, year, month, days, num_header);
-
-%% plot MMB
-figure(1)
-subplot(211)
-plot(time_min, mmbZ)
-
-subplot(212)
-plot(time_min, mmbH)
+[hzplot] = F_HZ_plot(time_min, apiH, apiZ)
 
 %% PPT
 station = 'ppt';
@@ -84,12 +96,8 @@ num_header = 25;
     dtype, year, month, days, num_header);
 
 %% plot PPT
-figure(1)
-subplot(211)
-plot(time_min, pptZ)
+[hzplot] = F_HZ_plot(time_min, pptH, pptZ)
 
-subplot(212)
-plot(time_min, pptH)
 %% IPM
 station = 'ipm';
 datapath = '../../Data/INTERMAGNET/IPM/variational/2022/01/';
@@ -101,36 +109,4 @@ num_header = 23;
     dtype, year, month, days, num_header);
 
 %% plot IPM
-figure(1)
-subplot(211)
-plot(time_s, ipmZ)
-
-subplot(212)
-plot(time_s, ipmH)
-%%  
-
-
-addpath 
-days= 15:16;
-formatSpec = 'kak202201%dpsec.sec';
-daynum= 1;
-
-for n=days
-    filename = sprintf(formatSpec,n)
-    delimiterIn = ' ';
-    headerlinesIn = 20;
-    A = importdata(filename,delimiterIn,headerlinesIn);
-    
-    sp=1+(daynum-1)*daysec;
-    ep=daysec+(daynum-1)*daysec;
-    daynum= 1 + daynum;
-
-    kakX(sp:ep)=A.data(:,2);
-    kakY(sp:ep)=A.data(:,3);
-    kakZ(sp:ep)=A.data(:,4);
-end
-disp('KAK data read in to matlab arrays.')
-
-kakH = (kakX.^2+kakY.^2).^.5;
-disp('Horiztonal component made')
-
+[hzplot] = F_HZ_plot(time_s, ipmH, ipmZ)
