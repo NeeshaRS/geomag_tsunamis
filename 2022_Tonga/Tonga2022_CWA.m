@@ -10,9 +10,9 @@ daymin=24*60;
 
 addpath('../tsunami_library')
 
-%% local = KAK, remote = KNY
+%% local = KAK, remote = ASP
 load kak_2022-01-15_zh.mat
-load kny_2022-01-15_zh.mat
+load api_2022-01-15_zh.mat
 whos
 
 % very rough back of the envelope estimate of tsunami arrival
@@ -20,7 +20,22 @@ etaT= datenum('15-Jan-2022 14:00:00');
 
 local_Z= kakZ;
 local_H= kakH;
-remote_H= knyH;
+remote_H= apiH;
+
+[W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+
+%% local = KAK, remote = MMB
+load kak_2022-01-15_zh.mat
+load mmb_2022-01-15_zh.mat
+whos
+
+% very rough back of the envelope estimate of tsunami arrival
+etaT= datenum('15-Jan-2022 14:00:00'); 
+
+local_Z= kakZ;
+local_H= kakH;
+remote_H= mmbH;
 
 [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
 F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);

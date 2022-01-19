@@ -13,7 +13,7 @@ function [CWA_plot, zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT
 % maxtime: the time of the max magnetic signal
 
 % The first periodogram
-CWA_plot=figure(1); 
+CWA_plot=figure(); 
 set(CWA_plot,'Position',[100 100 1100 200],'PaperPositionMode','auto');
 colormap(jet);
 imagesc(time,a,CWAp);  
@@ -29,7 +29,7 @@ xlabel('Time (HH:MM)');
 ylabel('Period (min)'); 
 
 % The zoomed in periodogram
-zoom_plot=figure(2); 
+zoom_plot=figure(); 
 colormap(jet);
 imagesc(time,a,CWAp);  
 set(gca, 'FontSize', 16); 
