@@ -47,7 +47,21 @@ end
 
 
 %% local = KNY, remote = ASP
+for i=1
+    load kny_2022-01-15_zh.mat
+    load asp_2022-01-15_zh.mat
+    whos
 
+    % very rough back of the envelope estimate of tsunami arrival @ KAK
+    etaT= datenum('15-Jan-2022 15:45:00');
+
+    local_Z= knyZ;
+    local_H= knyH;
+    remote_H= aspH;
+
+    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+end
 
 %% local = CNB, remote = ASP
 
