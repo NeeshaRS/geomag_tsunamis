@@ -72,7 +72,26 @@ plot(time_min, mmbZ)
 
 subplot(212)
 plot(time_min, mmbH)
-%% 
+
+%% PPT
+station = 'ppt';
+datapath = '../../Data/INTERMAGNET/PPT/variational/2022/01/';
+timeres = 'min';
+dtype = 'v';
+num_header = 25;
+
+[pptX, pptY, pptZ, pptH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% plot PPT
+figure(1)
+subplot(211)
+plot(time_min, pptZ)
+
+subplot(212)
+plot(time_min, pptH)
+%%  
+
 
 addpath 
 days= 15:16;
