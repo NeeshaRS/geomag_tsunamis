@@ -20,7 +20,23 @@ year = '2022';
 month = '01';
 days= 15; %:16;
 
-%% KNY: remote for KAK, MMB, and CHI
+%% ASP
+station = 'asp';
+datapath = '../../../Data/INTERMAGNET/ASP/provisional/2022/01/';
+timeres = 'min';
+dtype = 'p';
+num_header = 22;
+
+[aspX, aspY, aspZ, aspH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% save & plot ASP
+
+save asp_2022-01-15_zh.mat aspZ aspH time_min
+[hzplot] = F_HZ_plot(time_min, aspH, aspZ)
+
+
+%% KNY
 station = 'kny';
 datapath = '../../../Data/INTERMAGNET/KNY/provisional/2022/01/';
 timeres = 'min';
