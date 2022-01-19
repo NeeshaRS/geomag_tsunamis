@@ -30,7 +30,9 @@ num_header = 20;
 [knyX, knyY, knyZ, knyH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% plot KNY
+%% save & plot KNY
+
+save kny_2022-01-15_zh.mat knyZ knyH time_min
 [hzplot] = F_HZ_plot(time_min, knyH, knyZ)
 
 %% KAK
@@ -43,7 +45,9 @@ num_header = 20;
 [kakX, kakY, kakZ, kakH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% plot KAK
+%% save & plot KAK
+
+save kak_2022-01-15_zh.mat kakZ kakH time_min
 [hzplot] = F_HZ_plot(time_min, kakH, kakZ)
 
 %% MMB
@@ -56,7 +60,9 @@ num_header = 20;
 [mmbX, mmbY, mmbZ, mmbH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% plot MMB
+%% save & plot MMB
+
+save mmb_2022-01-15_zh.mat mmbZ mmbH time_min
 [hzplot] = F_HZ_plot(time_min, mmbH, mmbZ)
 
 %% CNB
@@ -69,7 +75,9 @@ num_header = 22;
 [cnbX, cnbY, cnbZ, cnbH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% plot CNB
+%% save & plot CNB
+
+save cnb_2022-01-15_zh.mat cnbZ cnbH time_min
 [hzplot] = F_HZ_plot(time_min, cnbH, cnbZ)
 
 %% API
@@ -82,7 +90,9 @@ num_header = 22;
 [apiX, apiY, apiZ, apiH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% plot API
+%% save & plot API
+
+save api_2022-01-15_zh.mat apiZ apiH time_min
 [hzplot] = F_HZ_plot(time_min, apiH, apiZ)
 
 %% PPT
@@ -96,6 +106,8 @@ num_header = 25;
     dtype, year, month, days, num_header);
 
 %% plot PPT
+
+save ppt_2022-01-15_zh.mat pptZ pptH time_min
 [hzplot] = F_HZ_plot(time_min, pptH, pptZ)
 
 %% IPM
@@ -105,8 +117,16 @@ timeres = 'sec';
 dtype = 'v';
 num_header = 23;
 
-[ipmX, ipmY, ipmZ, ipmH] = F_load_INTERMAG(station, datapath, timeres, ...
+[ipmX_s, ipmY_s, ipmZ_s, ipmH_s] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% plot IPM
-[hzplot] = F_HZ_plot(time_s, ipmH, ipmZ)
+[hzplot] = F_HZ_plot(time_s, ipmH_s, ipmZ_s)
+
+%% resample IPM to 1 minute
+ipmH = interp1(time_s,ipmH_s,time_min) 
+ipmZ = interp1(time_s,ipmZ_s,time_min) 
+disp('interpolated IPM to 1 minute from 1 second')
+%% save & plot IPM
+
+save ipm_2022-01-15_zh.mat ipmZ ipmH time_min
+[hzplot] = F_HZ_plot(time_min, ipmH, ipmZ)
