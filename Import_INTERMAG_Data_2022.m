@@ -38,8 +38,41 @@ plot(time_min, kakZ)
 subplot(212)
 plot(time_min, kakH)
 
-%%
+%% API
+station = 'api';
+datapath = '../../Data/INTERMAGNET/API/provisional/2022/01/';
+timeres = 'min';
+dtype = 'p';
+num_header = 22;
 
+[apiX, apiY, apiZ, apiH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% plot API
+figure(1)
+subplot(211)
+plot(time_min, apiZ)
+
+subplot(212)
+plot(time_min, apiH)
+%% MMB
+station = 'mmb';
+datapath = '../../Data/INTERMAGNET/MMB/provisional/2022/01/';
+timeres = 'min';
+dtype = 'p';
+num_header = 20;
+
+[mmbX, mmbY, mmbZ, mmbH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% plot MMB
+figure(1)
+subplot(211)
+plot(time_min, mmbZ)
+
+subplot(212)
+plot(time_min, mmbH)
+%% 
 
 addpath 
 days= 15:16;
