@@ -27,8 +27,19 @@ timeres = 'min';
 dtype = 'p';
 num_header = 20;
 
-[Bx, By, Bz, Bh] = F_load_INTERMAG(station, datapath, timeres, ...
-    dtype, year, month, days, num_header)
+[kakX, kakY, kakZ, kakH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% plot KAK
+figure(1)
+subplot(211)
+plot(time_min, kakZ)
+
+subplot(212)
+plot(time_min, kakH)
+
+%%
+
 
 addpath 
 days= 15:16;
@@ -53,11 +64,4 @@ disp('KAK data read in to matlab arrays.')
 
 kakH = (kakX.^2+kakY.^2).^.5;
 disp('Horiztonal component made')
-
-figure(1)
-subplot(211)
-plot(time_s, kakZ)
-
-subplot(212)
-plot(time_s, kakH)
 

@@ -26,16 +26,24 @@ function [Bx, By, Bz, Bh] = F_load_INTERMAG(station, datapath, timeres, ...
 
 
 addpath(datapath)
-formatSpec = [station + year + month + '%d' + dtype + timeres + '.' + timeres];
+formatSpec = [station year month '%d' dtype timeres '.' timeres];
 daynum= 1;
+
+daymin = 24*60;
+daysec = daymin*60;
 
 for n=days
     filename = sprintf(formatSpec,n)
     delimiterIn = ' ';
     A = importdata(filename, delimiterIn, num_header);
     
-    sp=1+(daynum-1)*daysec;
-    ep=daysec+(daynum-1)*daysec;
+    if timeres == 'sec'
+        sp=1+(daynum-1)*daysec;
+        ep=daysec+(daynum-1)*daysec;
+    else if timeres == 'min'
+        sp=1+(daynum-1)*daymin;
+        ep=daymin+(daynum-1)*daymin;
+    end
     daynum= 1 + daynum;
 
     Bx(sp:ep)=A.data(:,2);
