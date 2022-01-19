@@ -35,7 +35,6 @@ num_header = 22;
 save asp_2022-01-15_zh.mat aspZ aspH time_min
 [hzplot] = F_HZ_plot(time_min, aspH, aspZ)
 
-
 %% KNY
 station = 'kny';
 datapath = '../../../Data/INTERMAGNET/KNY/provisional/2022/01/';

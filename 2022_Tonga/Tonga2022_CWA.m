@@ -10,53 +10,53 @@ daymin=24*60;
 
 addpath('../tsunami_library')
 
+disp('ready to go')
 %% local = KAK, remote = ASP
-load kak_2022-01-15_zh.mat
-load api_2022-01-15_zh.mat
-whos
+for i=1
+    load kak_2022-01-15_zh.mat
+    load asp_2022-01-15_zh.mat
+    whos
 
-% very rough back of the envelope estimate of tsunami arrival
-etaT= datenum('15-Jan-2022 14:00:00'); 
+    very rough back of the envelope estimate of tsunami arrival @ KAK
+    etaT= datenum('15-Jan-2022 14:00:00');
 
-local_Z= kakZ;
-local_H= kakH;
-remote_H= apiH;
+    local_Z= kakZ;
+    local_H= kakH;
+    remote_H= aspH;
 
-[W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+end
+%% local = MMB, remote = ASP
+for i=1
+    load mmb_2022-01-15_zh.mat
+    load asp_2022-01-15_zh.mat
+    whos
 
-%% local = KAK, remote = MMB
-load kak_2022-01-15_zh.mat
-load mmb_2022-01-15_zh.mat
-whos
+    % very rough back of the envelope estimate of tsunami arrival @ KAK
+    etaT= datenum('15-Jan-2022 15:00:00');
 
-% very rough back of the envelope estimate of tsunami arrival
-etaT= datenum('15-Jan-2022 14:00:00'); 
+    local_Z= mmbZ;
+    local_H= mmbH;
+    remote_H= aspH;
 
-local_Z= kakZ;
-local_H= kakH;
-remote_H= mmbH;
-
-[W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
-
-%% local = MMB, remote = KNY
-
-
-%% local = CHI, remote = KNY
-
-
-%% local = KNY, remote = MMB
+    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+end
+%% local = CHI, remote = ASP
 
 
-%% local = CNB, remote = API
+%% local = KNY, remote = ASP
 
 
-%% local = API, remote = CNB
+%% local = CNB, remote = ASP
 
 
-%% local = IPM, remote = PPT
+%% local = API, remote = ASP
 
 
-%% local = PPT, remote = IPM
+%% local = IPM, remote = ASP
+
+
+%% local = PPT, remote = ASP
 
