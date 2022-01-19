@@ -90,6 +90,23 @@ plot(time_min, pptZ)
 
 subplot(212)
 plot(time_min, pptH)
+%% IPM
+station = 'ipm';
+datapath = '../../Data/INTERMAGNET/IPM/variational/2022/01/';
+timeres = 'sec';
+dtype = 'v';
+num_header = 23;
+
+[ipmX, ipmY, ipmZ, ipmH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+%% plot IPM
+figure(1)
+subplot(211)
+plot(time_s, ipmZ)
+
+subplot(212)
+plot(time_s, ipmH)
 %%  
 
 

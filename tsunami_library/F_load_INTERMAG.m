@@ -38,11 +38,11 @@ for n=days
     A = importdata(filename, delimiterIn, num_header);
     
     if timeres == 'sec'
-        sp=1+(daynum-1)*daysec;
-        ep=daysec+(daynum-1)*daysec;
-    else if timeres == 'min'
-        sp=1+(daynum-1)*daymin;
-        ep=daymin+(daynum-1)*daymin;
+        sp= 1 + (daynum-1)*daysec;
+        ep= daysec + (daynum-1)*daysec;
+    elseif timeres == 'min'
+        sp= 1+(daynum-1)*daymin;
+        ep= daymin+(daynum-1)*daymin;
     end
     daynum= 1 + daynum;
 
@@ -55,4 +55,3 @@ disp('...Vector data read in to matlab arrays.')
 Bh = (Bx.^2+By.^2).^.5;
 disp('...Horiztonal component made.')
 
-end
