@@ -3,19 +3,6 @@ clc; clear all;
 
 daymin=24*60;
 daysec= daymin*60;
-%% GUA
-addpath ../../Data/INTERMAGNET/GUA/provisional/2022/01/
-days= 15:16;
-formatSpec = 'gua202201%dpsec.sec';
-
-for n=days
-    filename  = sprintf(formatSpec,n)
-    delimiterIn = ' ';
-    headerlinesIn = 19;
-    A = importdata(filename,delimiterIn,headerlinesIn);
-    print(A.data)
-end
-
 %% KAK
 
 days=length(3:19);
