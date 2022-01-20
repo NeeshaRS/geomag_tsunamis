@@ -3,7 +3,7 @@ function [hzplot] = F_HZ_plot(timearray,Harray, Zarray)
 % (nT).
 %   Detailed explanation goes here
 
-hzplot= figure(1)
+hzplot= figure()
 set(hzplot,'Position',[100 100 1100 600],'PaperPositionMode','auto');
 
 subplot(211)

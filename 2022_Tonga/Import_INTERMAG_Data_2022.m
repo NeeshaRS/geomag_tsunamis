@@ -30,10 +30,13 @@ num_header = 22;
 [aspX, aspY, aspZ, aspH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% save & plot ASP
+% save & plot ASP
 
-save asp_2022-01-15_zh.mat aspZ aspH time_min
+% save asp_2022-01-15_zh.mat aspZ aspH time_min
 [hzplot] = F_HZ_plot(time_min, aspH, aspZ)
+
+%% detrend ASP via splines
+
 
 %% KNY
 station = 'kny';
