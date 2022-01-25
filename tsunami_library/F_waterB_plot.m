@@ -28,5 +28,6 @@ datetick('x');
 xlabel('Time (hr:mm UTC)')
 ylabel('magnetic field (nT)')
 
+saveas(wbplot,fname)
 
 end
