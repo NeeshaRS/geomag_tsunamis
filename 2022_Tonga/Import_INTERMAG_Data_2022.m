@@ -45,7 +45,7 @@ num_header = 20;
 [knyX, knyY, knyZ, knyH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% save & plot KNY
+% save & plot KNY
 
 save kny_2022-01-15_zh.mat knyZ knyH time_min
 [hzplot] = F_HZ_plot(time_min, knyH, knyZ)
@@ -60,7 +60,7 @@ num_header = 20;
 [kakX, kakY, kakZ, kakH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% save & plot KAK
+% save & plot KAK
 
 save kak_2022-01-15_zh.mat kakZ kakH time_min
 [hzplot] = F_HZ_plot(time_min, kakH, kakZ)
@@ -75,7 +75,7 @@ num_header = 20;
 [mmbX, mmbY, mmbZ, mmbH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% save & plot MMB
+% save & plot MMB
 
 save mmb_2022-01-15_zh.mat mmbZ mmbH time_min
 [hzplot] = F_HZ_plot(time_min, mmbH, mmbZ)
@@ -90,7 +90,7 @@ num_header = 22;
 [cnbX, cnbY, cnbZ, cnbH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% save & plot CNB
+% save & plot CNB
 
 save cnb_2022-01-15_zh.mat cnbZ cnbH time_min
 [hzplot] = F_HZ_plot(time_min, cnbH, cnbZ)
@@ -105,7 +105,7 @@ num_header = 22;
 [apiX, apiY, apiZ, apiH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% save & plot API
+% save & plot API
 
 % save api_2022-01-15_zh.mat apiZ apiH time_min
 [hzplot] = F_HZ_plot(time_min, apiH, apiZ)
@@ -120,7 +120,7 @@ num_header = 25;
 [pptX, pptY, pptZ, pptH] = F_load_INTERMAG(station, datapath, timeres, ...
     dtype, year, month, days, num_header);
 
-%% plot PPT
+% plot PPT
 
 % save ppt_2022-01-15_zh.mat pptZ pptH time_min
 [hzplot] = F_HZ_plot(time_min, pptH, pptZ)
@@ -136,6 +136,14 @@ num_header = 20;
     dtype, year, month, days, num_header);
 
 [hzplot] = F_HZ_plot(time_s, cbiH_s, cbiZ_s)
+%%
+% resample IPM to 1 minute
+cbiH = interp1(time_s,cbiH_s,time_min) 
+cbiZ = interp1(time_s,cbiZ_s,time_min) 
+disp('interpolated CBI to 1 minute from 1 second')
+
+[hzplot] = F_HZ_plot(time_min, cbiH, cbiZ)
+save cbi_2022-01-15_zh.mat cbiZ cbiH time_min
 
 %% IPM
 station = 'ipm';
@@ -149,11 +157,25 @@ num_header = 23;
 
 [hzplot] = F_HZ_plot(time_s, ipmH_s, ipmZ_s)
 
-%% resample IPM to 1 minute
+% resample IPM to 1 minute
 ipmH = interp1(time_s,ipmH_s,time_min) 
 ipmZ = interp1(time_s,ipmZ_s,time_min) 
 disp('interpolated IPM to 1 minute from 1 second')
-%% save & plot IPM
+% save & plot IPM
 
 save ipm_2022-01-15_zh.mat ipmZ ipmH time_min
 [hzplot] = F_HZ_plot(time_min, ipmH, ipmZ)
+
+%% HON
+station = 'hon';
+datapath = '../../../Data/INTERMAGNET/HON/provisional/2022/01/';
+timeres = 'min';
+dtype = 'v';
+num_header = 22;
+
+[honX, honY, honZ, honH] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+[hzplot] = F_HZ_plot(time_min, honH, honZ)
+
+save hon_2022-01-15_zh.mat honZ honH time_min
