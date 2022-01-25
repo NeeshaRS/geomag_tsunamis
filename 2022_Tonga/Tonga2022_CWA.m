@@ -8,6 +8,7 @@ waven = 'cgau4';
 n=7;
 daymin=24*60;
 
+addpath matlab_datafiles/
 addpath('../tsunami_library')
 
 disp('ready to go')
