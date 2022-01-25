@@ -12,52 +12,35 @@ addpath matlab_datafiles/
 addpath('../tsunami_library')
 
 disp('ready to go')
-%% local = KAK, remote = ASP
+
+%% local = API, remote = ASP
 for i=1
-    load kak_2022-01-15_zh.mat
+    load api_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
 
-    very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 14:00:00');
+    % very rough back of the envelope estimate of tsunami arrival @ KAK
+    etaT= datenum('15-Jan-2022 7:00:00');
 
-    local_Z= kakZ;
-    local_H= kakH;
+    local_Z= apiZ;
+    local_H= apiH;
     remote_H= aspH;
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
         F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
 end
-%% local = MMB, remote = ASP
+
+%% local = CBI, remote = ASP
 for i=1
-    load mmb_2022-01-15_zh.mat
+    load cbi_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 15:00:00');
+    etaT= datenum('15-Jan-2022 13:00:00');
 
-    local_Z= mmbZ;
-    local_H= mmbH;
-    remote_H= aspH;
-
-    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
-end
-%% local = CHI, remote = ASP
-
-
-%% local = KNY, remote = ASP
-for i=1
-    load kny_2022-01-15_zh.mat
-    load asp_2022-01-15_zh.mat
-    whos
-
-    % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 15:45:00');
-
-    local_Z= knyZ;
-    local_H= knyH;
+    local_Z= cbiZ;
+    local_H= cbiH;
     remote_H= aspH;
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -81,23 +64,22 @@ for i=1
         F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
 end
 
-%% local = API, remote = ASP
+%% local = HON, remote = ASP
 for i=1
-    load api_2022-01-15_zh.mat
+    load hon_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 7:00:00');
+    etaT= datenum('15-Jan-2022 10:15:00');
 
-    local_Z= apiZ;
-    local_H= apiH;
+    local_Z= honZ;
+    local_H= honH;
     remote_H= aspH;
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
         F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
 end
-
 
 %% local = IPM, remote = ASP
 for i=1
@@ -116,8 +98,58 @@ for i=1
         F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
 end
 
-%% local = PPT, remote = ASP
+%% local = KAK, remote = ASP
+for i=1
+    load kak_2022-01-15_zh.mat
+    load asp_2022-01-15_zh.mat
+    whos
 
+    very rough back of the envelope estimate of tsunami arrival @ KAK
+    etaT= datenum('15-Jan-2022 14:00:00');
+
+    local_Z= kakZ;
+    local_H= kakH;
+    remote_H= aspH;
+
+    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+end
+
+%% local = KNY, remote = ASP
+for i=1
+    load kny_2022-01-15_zh.mat
+    load asp_2022-01-15_zh.mat
+    whos
+
+    % very rough back of the envelope estimate of tsunami arrival @ KAK
+    etaT= datenum('15-Jan-2022 15:45:00');
+
+    local_Z= knyZ;
+    local_H= knyH;
+    remote_H= aspH;
+
+    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+end
+
+%% local = MMB, remote = ASP
+for i=1
+    load mmb_2022-01-15_zh.mat
+    load asp_2022-01-15_zh.mat
+    whos
+
+    % very rough back of the envelope estimate of tsunami arrival @ KAK
+    etaT= datenum('15-Jan-2022 15:00:00');
+
+    local_Z= mmbZ;
+    local_H= mmbH;
+    remote_H= aspH;
+
+    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+end
+
+%% local = PPT, remote = ASP
 for i=1
     load ppt_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
