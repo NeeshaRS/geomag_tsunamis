@@ -39,11 +39,21 @@ disp('complex wavelet transforms complete')
 
 a=perd/60;
 
+[CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, abs(local_Hw))
+[CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, abs(remote_Hw))
+[CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, abs(local_Zw))
+
 disp('crossing the two horizontal wavelets..'); tic;
 % Cross the two horizontal stations to produce the weight
-Hxy = remote_Hw .* conj(local_Hw);
+Hxy = (remote_Hw) .* conj(local_Hw);
+
+[CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, abs(Hxy))
+
 cc = abs(max(max(abs(Hxy))) - abs(Hxy) );
 weight = (cc./max(max(cc)));
+whos weight cc Hxy
+[CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, weight)
+
 toc; 
 disp('crossed!')
 

@@ -2,6 +2,9 @@
 clc; clear all;
 
 daymin=24*60;
+daysec= daymin*60;
+%% KAK
+
 days=length(3:19);
 kakX=zeros(days*daymin,1);
 kakY=zeros(days*daymin,1);

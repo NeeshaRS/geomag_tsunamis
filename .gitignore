@@ -1,0 +1,6 @@
+# ignore MATLAB intermediate files
+*.DS_Store
+*.asv
+
+# ignore plots
+2022_Tonga/figures/
