@@ -35,9 +35,6 @@ num_header = 22;
 % save asp_2022-01-15_zh.mat aspZ aspH time_min
 [hzplot] = F_HZ_plot(time_min, aspH, aspZ)
 
-%% detrend ASP via splines
-
-
 %% KNY
 station = 'kny';
 datapath = '../../../Data/INTERMAGNET/KNY/provisional/2022/01/';
@@ -110,7 +107,7 @@ num_header = 22;
 
 %% save & plot API
 
-save api_2022-01-15_zh.mat apiZ apiH time_min
+% save api_2022-01-15_zh.mat apiZ apiH time_min
 [hzplot] = F_HZ_plot(time_min, apiH, apiZ)
 
 %% PPT
@@ -125,8 +122,20 @@ num_header = 25;
 
 %% plot PPT
 
-save ppt_2022-01-15_zh.mat pptZ pptH time_min
+% save ppt_2022-01-15_zh.mat pptZ pptH time_min
 [hzplot] = F_HZ_plot(time_min, pptH, pptZ)
+
+%% CBI
+station = 'cbi';
+datapath = '../../../Data/INTERMAGNET/CBI/';
+timeres = 'sec';
+dtype = 'p';
+num_header = 20;
+
+[cbiX_s, cbiY_s, cbiZ_s, cbiH_s] = F_load_INTERMAG(station, datapath, timeres, ...
+    dtype, year, month, days, num_header);
+
+[hzplot] = F_HZ_plot(time_s, cbiH_s, cbiZ_s)
 
 %% IPM
 station = 'ipm';
