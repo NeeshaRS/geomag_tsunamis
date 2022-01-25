@@ -18,3 +18,13 @@ for i=1
     plot(time_min2, honZ_d)
     plot(time_min2, honH_d, '--')
 end
+
+%% API
+for i=1
+    load API_water_levels_m.mat
+    load api_2022-01-15_zh.mat
+    time_min2= datetime(time_min, 'ConvertFrom','datenum');
+    
+    F_waterB_plot(time,height_m, time_min2, apiZ, 'api_wb_Z.png')
+
+end
