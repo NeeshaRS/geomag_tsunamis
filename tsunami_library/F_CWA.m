@@ -33,6 +33,7 @@ perd = 1./scal2frq(Sc,waven,dt);
 local_Zw = cwt(local_Zf,Sc,waven);
 local_Hw = cwt(local_Hf,Sc,waven);
 remote_Hw = cwt(remote_Hf,Sc,waven); 
+remote_Zw = cwt(remote_Hf,Sc,waven); 
 
 toc; 
 disp('complex wavelet transforms complete')
@@ -42,6 +43,7 @@ a=perd/60;
 [CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, abs(local_Hw))
 [CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, abs(remote_Hw))
 [CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, abs(local_Zw))
+[CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA_plot(a, maxT, time, etaT, abs(remote_Zw))
 
 disp('crossing the two horizontal wavelets..'); tic;
 % Cross the two horizontal stations to produce the weight

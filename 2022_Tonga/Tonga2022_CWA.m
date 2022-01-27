@@ -20,7 +20,7 @@ for i=1
     whos
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 7:00:00');
+    etaT= datenum('15-Jan-2022 05:25:00');
 
     local_Z= apiZ;
     local_H= apiH;

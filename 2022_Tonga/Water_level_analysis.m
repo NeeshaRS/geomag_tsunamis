@@ -10,8 +10,8 @@ for i=1
     time_min2= datetime(time_min, 'ConvertFrom','datenum');
 
     % try detrending
-    apiH_d= detrend(apiH); %, 4
-    apiZ_d= detrend(apiZ);
+    apiH_d= detrend(apiH, 4); %, 4
+    apiZ_d= detrend(apiZ, 4);
 
     F_waterB_plot(time,height_m, time_min2, apiZ_d, 'api_wb_Zd.png')
     F_waterB_plot(time,height_m, time_min2, apiH_d, 'api_wb_Hd.png')

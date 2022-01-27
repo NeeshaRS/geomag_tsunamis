@@ -21,7 +21,7 @@ set(gca, 'FontSize', 16);
 datetick('x');
 line([etaT etaT],[0 400],'LineStyle','--','Color',[1 1 1],'LineWidth',0.25)
 xlim([time(1) time(end)]);
-ylim([0 2*maxT/60]); 
+ylim([0 2*maxT/60]);  
 h=colorbar;
 set(h,'fontsize',14); 
 set(get(h,'ylabel'),'string','nT','fontsize',14);
@@ -41,7 +41,7 @@ xlabels=datestr(linspace((etaT-1.5/24),(etaT+2/24),4));
 set(gca,'XTickLabel',{xlabels(1,13:17),xlabels(2,13:17),xlabels(3,13:17),xlabels(4,13:17)},...
     'XTick',[xticks(1),xticks(2),xticks(3),xticks(4)])
 
-ylim([0 2*maxT/60]); 
+ylim([0 20]); % max of 2*maxT/60
 h=colorbar;
 set(h,'fontsize',14); 
 set(get(h,'ylabel'),'string','nT','fontsize',14);
