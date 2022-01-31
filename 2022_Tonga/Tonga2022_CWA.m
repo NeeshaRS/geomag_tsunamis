@@ -66,6 +66,44 @@ for i=1
         F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
 end
 
+%% local = CTA, remote = ASP
+for i=1
+    load cta_2022-01-15_zh.mat
+    load asp_2022-01-15_zh.mat
+    whos
+
+    % very rough back of the envelope estimate of tsunami arrival @ KAK
+%     etaT= datenum('15-Jan-2022 10:30:00');  
+    % match API's ETA for comparison
+    etaT= datenum('15-Jan-2022 05:11:00'); 
+
+    local_Z= ctaZ;
+    local_H= ctaH;
+    remote_H= aspH;
+
+    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+end
+
+%% local = EYR, remote = ASP
+for i=1
+    load eyr_2022-01-15_zh.mat
+    load asp_2022-01-15_zh.mat
+    whos
+
+    % very rough back of the envelope estimate of tsunami arrival @ KAK
+%     etaT= datenum('15-Jan-2022 10:30:00');  
+    % match API's ETA for comparison
+    etaT= datenum('15-Jan-2022 05:11:00'); 
+
+    local_Z= eyrZ;
+    local_H= eyrH;
+    remote_H= aspH;
+
+    [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+end
+
 %% local = HON, remote = ASP
 for i=1
     load hon_2022-01-15_zh.mat
