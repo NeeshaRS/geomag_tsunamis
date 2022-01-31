@@ -11,8 +11,10 @@ n=7;
 %% API
 for i=1
     close all
+    % load water level data
     load API_water_levels_m.mat
     load api_2022-01-15_zh.mat
+    % convert time array to matlab datetime
     time_min2= datetime(time_min, 'ConvertFrom','datenum');
     
     % remove NaNs from water level data
@@ -27,7 +29,8 @@ for i=1
     % high pass filter magnetic data
     apiZ_hpf = F_HPF(maxT, dt, n, apiZ);
     apiH_hpf = F_HPF(maxT, dt, n, apiH);
-
+    
+    % plot water level vs magnetic field data
     F_waterB_plot(time,height_m_hpf, time_min2, apiZ, 'api_whpf_Z.png')
     F_waterB_plot(time,height_m_hpf, time_min2, apiH, 'api_whpf_H.png')
 
@@ -47,40 +50,58 @@ for i=1
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
 
     % try detrending magnetic field
-%     honH_d= detrend(honH); %, 4
-%     honZ_d= detrend(honZ);
+    honH_d= detrend(honH); %, 4
+    honZ_d= detrend(honZ);
+    % convert time array to matlab datetime
     time_min2= datetime(time_min, 'ConvertFrom','datenum');
+    % high pass filter magnetic data
     honZ_hpf = F_HPF(maxT, dt, n, honZ);
     honH_hpf = F_HPF(maxT, dt, n, honH);
-
+    
+    % plot water level vs magnetic field data
     F_waterB_plot(time,height_m_hpf, time_min2, honZ, 'hon_whpf_Z.png')
     F_waterB_plot(time,height_m_hpf, time_min2, honH, 'hon_whpf_H.png')
-%     F_waterB_plot(time,height_m, time_min2, honH, 'hon_w_H.png')
 end
 
 %% IPM
 for i=1
     close all
+    % load water level data
     load IPM_water_levels_m.mat
     load ipm_2022-01-15_zh.mat
     time_min2= datetime(time_min, 'ConvertFrom','datenum');
 
-    F_waterB_plot(time,height_m, time_min2, ipmZ, 'ipm_wb_Z.png')
-    F_waterB_plot(time,height_m, time_min2, ipmH, 'ipm_wb_H.png')
+    % remove NaNs from water level data
+    height_m= height_m(~isnan(height_m))';
+    time= time(~isnan(height_m));
+    % high pass filter water level data
+    height_m_hpf = F_HPF(maxT, dt, n, height_m');
+    
+    % plot water level vs magnetic field data
+    F_waterB_plot(time,height_m_hpf, time_min2, ipmZ, 'ipm_whpf_Z.png')
+    F_waterB_plot(time,height_m_hpf, time_min2, ipmH, 'ipm_whpf_H.png')
 
 end
 %% PPT
 for i=1
     close all
+    % load water level data
     load PPT_water_levels_m.mat
     load ppt_2022-01-15_zh.mat
+    % convert time array to matlab datetime
     time_min2= datetime(time_min, 'ConvertFrom','datenum');
+
+    % remove NaNs from water level data
+    height_m= height_m(~isnan(height_m))';
+    time= time(~isnan(height_m));
+    % high pass filter water level data
+    height_m_hpf = F_HPF(maxT, dt, n, height_m');
 
     % try detrending
     pptH_d= detrend(pptH); %, 4
     pptZ_d= detrend(pptZ);
 
-    F_waterB_plot(time,height_m, time_min2, pptZ_d, 'ppt_wb_Zd.png')
-    F_waterB_plot(time,height_m, time_min2, pptH_d, 'ppt_wb_Hd.png')
+    F_waterB_plot(time,height_m_hpf, time_min2, pptZ_d, 'ppt_whpf_Z.png')
+    F_waterB_plot(time,height_m_hpf, time_min2, pptH_d, 'ppt_whpf_H.png')
 
 end
