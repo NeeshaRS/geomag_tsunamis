@@ -110,8 +110,8 @@ for i=1
     load asp_2022-01-15_zh.mat
     whos
 
-    % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 10:15:00');
+    % based on HPF from Water_level_analysis.m
+    etaT= datenum('15-Jan-2022 09:07:00');
 
     local_Z= honZ;
     local_H= honH;
@@ -198,7 +198,7 @@ for i=1
     whos
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 7:45:00');
+    etaT= datenum('15-Jan-2022 06:48:00');
 
     local_Z= pptZ;
     local_H= pptH;
