@@ -8,6 +8,8 @@ addpath('../tsunami_library')
 maxT=1*60*30; %.5 hours is the max period
 dt= 60; % The sample rate of one per minute
 n=7;
+
+disp('initial parameters set')
 %% API
 for i=1
     close all
@@ -23,16 +25,19 @@ for i=1
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
 
-    % try detrending
-    apiH_d= detrend(apiH, 4); %, 4
-    apiZ_d= detrend(apiZ, 4);
+    % plot water level vs raw magnetic field data
+    F_waterB_plot(time,height_m_hpf, time_min2, apiZ,...
+        'figures/API/water_level_analysis/api_whpf_Z.png')
+    F_waterB_plot(time,height_m_hpf, time_min2, apiH,...
+        'figures/API/water_level_analysis/api_whpf_H.png')
+
     % high pass filter magnetic data
     apiZ_hpf = F_HPF(maxT, dt, n, apiZ);
     apiH_hpf = F_HPF(maxT, dt, n, apiH);
     
-    % plot water level vs magnetic field data
-    F_waterB_plot(time,height_m_hpf, time_min2, apiZ, 'api_whpf_Z.png')
-    F_waterB_plot(time,height_m_hpf, time_min2, apiH, 'api_whpf_H.png')
+    % plot water level vs raw magnetic field data
+    F_waterB_3plot(time,height_m_hpf, time_min2, apiZ_hpf, apiH_hpf,...
+        'figures/API/water_level_analysis/api_whpf_Bhpf.png')
 
 end
 

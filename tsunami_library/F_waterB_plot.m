@@ -19,7 +19,7 @@ set(wbplot,'Position',[100 100 1100 600],'PaperPositionMode','auto');
 
 yyaxis left
 plot(t_w, data_w); hold on
-ylabel('weight height variation (m)')
+ylabel('wave height variation (m)')
 
 yyaxis right
 plot(t_b, data_b)
