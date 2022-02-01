@@ -2,7 +2,8 @@
 clc; clear all; close all;
 
 Sc = 0.1:0.1:200;
-maxT=1*60*30; % .5 hours is the max period
+% maxT=1*60*30; % .5 hours is the max period
+maxT=1*60*10; % 10 min is the max period
 dt= 60; % The sample rate of one per minute
 waven = 'cgau4';
 n=7;
@@ -26,7 +27,7 @@ for i=1
     local_H= apiH;
     remote_H= aspH;
 
-    figlocation= 'figures/API/wavelet_analysis/';
+    figlocation= 'figures/API/wavelet_analysis/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -46,7 +47,7 @@ for i=1
     local_H= cbiH;
     remote_H= aspH;
 
-    figlocation= 'figures/CBI/wavelet_analysis/';
+    figlocation= 'figures/CBI/wavelet_analysis/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -68,7 +69,7 @@ for i=1
     local_H= cnbH;
     remote_H= aspH;
 
-    figlocation= 'figures/CNB/';
+    figlocation= 'figures/CNB/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -91,7 +92,7 @@ for i=1
     local_H= ctaH;
     remote_H= aspH;
 
-    figlocation= 'figures/CTA/';
+    figlocation= 'figures/CTA/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -114,7 +115,7 @@ for i=1
     local_H= eyrH;
     remote_H= aspH;
 
-    figlocation= 'figures/EYR/';
+    figlocation= 'figures/EYR/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -129,13 +130,13 @@ for i=1
     whos
 
     % based on HPF from Water_level_analysis.m
-    etaT= datenum('15-Jan-2022 09:07:00');
+    etaT= datenum('15-Jan-2022 13:42:00');
 
     local_Z= honZ;
     local_H= honH;
     remote_H= aspH;
 
-    figlocation= 'figures/HON/wavelet_analysis/';
+    figlocation= 'figures/HON/wavelet_analysis/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -150,13 +151,13 @@ for i=1
     whos
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 10:15:00');
+    etaT= datenum('15-Jan-2022 13:42:00');
 
     local_Z= ipmZ;
     local_H= ipmH;
     remote_H= aspH;
     
-    figlocation= 'figures/IPM/wavelet_analysis/';
+    figlocation= 'figures/IPM/wavelet_analysis/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -196,7 +197,7 @@ for i=1
     local_H= knyH;
     remote_H= aspH;
 
-    figlocation= 'figures/KNY/';
+    figlocation= 'figures/KNY/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -234,7 +235,7 @@ for i=1
     local_H= pptH;
     remote_H= aspH;
 
-    figlocation= 'figures/PPT/wavelet_analysis/';
+    figlocation= 'figures/PPT/wavelet_analysis/10min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
