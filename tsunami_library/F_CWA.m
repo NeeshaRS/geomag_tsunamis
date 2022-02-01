@@ -43,12 +43,14 @@ a=perd/60;
 
 figname= [figlocation 'local_Hw'];
 [CWA_plot,zoom_plot, maxamp, maxtime] = ...
-    F_CWA_plot(a, maxT, time, etaT, abs(local_Hw), figname);
-figname= [figlocation 'remote_Hw'];
+    F_CWA_plot(a, maxT, time, etaT, abs(local_Hw), figname); 
+figname= [figlocation 'remote_Hw']; close all;
 [CWA_plot,zoom_plot, maxamp, maxtime] = ...
     F_CWA_plot(a, maxT, time, etaT, abs(remote_Hw), figname);
+close all;
 [CWA_plot,zoom_plot, maxamp, maxtime] = ...
     F_CWA_plot(a, maxT, time, etaT, abs(local_Zw), [figlocation 'local_Zw']);
+close all;
 [CWA_plot,zoom_plot, maxamp, maxtime] = ...
     F_CWA_plot(a, maxT, time, etaT, abs(remote_Zw), [figlocation 'remote_Zw']);
 
@@ -56,12 +58,15 @@ disp('crossing the two horizontal wavelets..'); tic;
 % Cross the two horizontal stations to produce the weight
 Hxy = (remote_Hw) .* conj(local_Hw);
 
+close all;
 [CWA_plot,zoom_plot, maxamp, maxtime] = ...
     F_CWA_plot(a, maxT, time, etaT, abs(Hxy), [figlocation 'Hxy']);
 
 cc = abs(max(max(abs(Hxy))) - abs(Hxy) );
 weight = (cc./max(max(cc)));
 whos weight cc Hxy
+
+close all;
 [CWA_plot,zoom_plot, maxamp, maxtime] = ...
     F_CWA_plot(a, maxT, time, etaT, weight, [figlocation 'weight_matrix']);
 
@@ -77,6 +82,7 @@ W_local_Zw1=abs(W_local_Zw);
 
 disp('Cross-wavelet analysis complete.')
 
+close all;
 [CWA_plot,zoom_plot, maxamp, maxtime] = ...
     F_CWA_plot(a, maxT, time, etaT, W_local_Zw1, [figlocation 'local_Zwd']);
 

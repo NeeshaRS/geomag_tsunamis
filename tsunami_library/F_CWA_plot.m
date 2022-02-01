@@ -96,5 +96,5 @@ flatten=max(CWAp);
 maxtime=time(i);
 
 fname2= [fname '_zoom.png'];
-saveas(CWA_plot,fname2)
+saveas(zoom_plot,fname2)
 disp([fname2 ' saved.'])

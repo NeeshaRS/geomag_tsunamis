@@ -135,8 +135,12 @@ for i=1
     local_H= honH;
     remote_H= aspH;
 
+    figlocation= 'figures/HON/wavelet_analysis/';
+    addpath(figlocation)
+
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = IPM, remote = ASP
@@ -156,7 +160,8 @@ for i=1
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT, figlocation);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = KAK, remote = ASP
@@ -191,8 +196,12 @@ for i=1
     local_H= knyH;
     remote_H= aspH;
 
+    figlocation= 'figures/KNY/';
+    addpath(figlocation)
+
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = MMB, remote = ASP
@@ -229,5 +238,6 @@ for i=1
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT, figlocation);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
