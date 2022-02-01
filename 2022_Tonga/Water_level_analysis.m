@@ -66,7 +66,7 @@ for i=1
     honZ_hpf = F_HPF(maxT, dt, n, honZ);
     honH_hpf = F_HPF(maxT, dt, n, honH);
     
-   % plot water level vs raw magnetic field data
+   % plot water level vs HPF magnetic field data
     F_waterB_3plot(time,height_m_hpf, time_min2, honZ_hpf, honH_hpf,...
         'figures/HON/water_level_analysis/hon_whpf_Bhpf.png')
 end
@@ -77,6 +77,7 @@ for i=1
     % load water level data
     load IPM_water_levels_m.mat
     load ipm_2022-01-15_zh.mat
+    % convert time array to matlab datetime
     time_min2= datetime(time_min, 'ConvertFrom','datenum');
 
     % remove NaNs from water level data
@@ -85,11 +86,21 @@ for i=1
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
     
-    % plot water level vs magnetic field data
-    F_waterB_plot(time,height_m_hpf, time_min2, ipmZ, 'ipm_whpf_Z.png')
-    F_waterB_plot(time,height_m_hpf, time_min2, ipmH, 'ipm_whpf_H.png')
-
+    % plot water level vs raw magnetic field data
+    F_waterB_plot(time,height_m_hpf, time_min2, ipmZ, ...
+        'figures/IPM/water_level_analysis/ipm_whpf_Z.png')
+    F_waterB_plot(time,height_m_hpf, time_min2, ipmH, ...
+        'figures/IPM/water_level_analysis/ipm_whpf_H.png')
+    
+    % high pass filter magnetic data
+    ipmZ_hpf = F_HPF(maxT, dt, n, ipmZ);
+    ipmH_hpf = F_HPF(maxT, dt, n, ipmH);
+    
+   % plot water level vs HPF magnetic field data
+    F_waterB_3plot(time,height_m_hpf, time_min2, ipmZ_hpf, ipmH_hpf,...
+        'figures/IPM/water_level_analysis/ipm_whpf_Bhpf.png')
 end
+
 %% PPT
 for i=1
     close all
@@ -105,11 +116,17 @@ for i=1
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
 
-    % try detrending
-    pptH_d= detrend(pptH); %, 4
-    pptZ_d= detrend(pptZ);
-
-    F_waterB_plot(time,height_m_hpf, time_min2, pptZ_d, 'ppt_whpf_Z.png')
-    F_waterB_plot(time,height_m_hpf, time_min2, pptH_d, 'ppt_whpf_H.png')
-
+    % plot water level vs raw magnetic field data
+    F_waterB_plot(time,height_m_hpf, time_min2, pptZ, ...
+        'figures/PPT/water_level_analysis/ppt_whpf_Z.png')
+    F_waterB_plot(time,height_m_hpf, time_min2, pptH, ...
+        'figures/PPT/water_level_analysis/ppt_whpf_H.png')
+    
+    % high pass filter magnetic data
+    pptZ_hpf = F_HPF(maxT, dt, n, pptZ);
+    pptH_hpf = F_HPF(maxT, dt, n, pptH);
+    
+   % plot water level vs HPF magnetic field data
+    F_waterB_3plot(time,height_m_hpf, time_min2, pptZ_hpf, pptH_hpf,...
+        'figures/PPT/water_level_analysis/ppt_whpf_Bhpf.png')
 end
