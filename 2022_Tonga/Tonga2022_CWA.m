@@ -133,9 +133,12 @@ for i=1
     local_Z= ipmZ;
     local_H= ipmH;
     remote_H= aspH;
+    
+    figlocation= 'figures/IPM/wavelet_analysis/';
+    addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT, figlocation);
 end
 
 %% local = KAK, remote = ASP
