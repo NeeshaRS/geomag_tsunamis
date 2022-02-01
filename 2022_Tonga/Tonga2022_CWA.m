@@ -26,8 +26,11 @@ for i=1
     local_H= apiH;
     remote_H= aspH;
 
+    figlocation= 'figures/API/wavelet_analysis/';
+    addpath(figlocation)
+
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT, figlocation);
 end
 
 %% local = CBI, remote = ASP
@@ -43,8 +46,11 @@ for i=1
     local_H= cbiH;
     remote_H= aspH;
 
+    figlocation= 'figures/CBI/wavelet_analysis/';
+    addpath(figlocation)
+
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT, figlocation);
 end
 
 %% local = CNB, remote = ASP
@@ -62,8 +68,12 @@ for i=1
     local_H= cnbH;
     remote_H= aspH;
 
+    figlocation= 'figures/CNB/';
+    addpath(figlocation)
+
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = CTA, remote = ASP
@@ -81,8 +91,12 @@ for i=1
     local_H= ctaH;
     remote_H= aspH;
 
+    figlocation= 'figures/CTA/';
+    addpath(figlocation)
+
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = EYR, remote = ASP
@@ -100,8 +114,12 @@ for i=1
     local_H= eyrH;
     remote_H= aspH;
 
+    figlocation= 'figures/EYR/';
+    addpath(figlocation)
+
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = HON, remote = ASP
@@ -207,6 +225,9 @@ for i=1
     local_H= pptH;
     remote_H= aspH;
 
+    figlocation= 'figures/PPT/wavelet_analysis/';
+    addpath(figlocation)
+
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT, figlocation);
 end
