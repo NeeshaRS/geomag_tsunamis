@@ -47,6 +47,8 @@ for i=1
     % load water level data
     load HON_water_levels_m.mat
     load hon_2022-01-15_zh.mat
+    % convert time array to matlab datetime
+    time_min2= datetime(time_min, 'ConvertFrom','datenum');
     
     % remove NaNs from water level data
     height_m= height_m(~isnan(height_m))';
@@ -54,18 +56,19 @@ for i=1
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
 
-    % try detrending magnetic field
-    honH_d= detrend(honH); %, 4
-    honZ_d= detrend(honZ);
-    % convert time array to matlab datetime
-    time_min2= datetime(time_min, 'ConvertFrom','datenum');
+     % plot water level vs raw magnetic field data
+    F_waterB_plot(time,height_m_hpf, time_min2, honZ, ...
+        'figures/HON/water_level_analysis/hon_whpf_Z.png')
+    F_waterB_plot(time,height_m_hpf, time_min2, honH, ...
+        'figures/HON/water_level_analysis/hon_whpf_H.png')
+
     % high pass filter magnetic data
     honZ_hpf = F_HPF(maxT, dt, n, honZ);
     honH_hpf = F_HPF(maxT, dt, n, honH);
     
-    % plot water level vs magnetic field data
-    F_waterB_plot(time,height_m_hpf, time_min2, honZ, 'hon_whpf_Z.png')
-    F_waterB_plot(time,height_m_hpf, time_min2, honH, 'hon_whpf_H.png')
+   % plot water level vs raw magnetic field data
+    F_waterB_3plot(time,height_m_hpf, time_min2, honZ_hpf, honH_hpf,...
+        'figures/HON/water_level_analysis/hon_whpf_Bhpf.png')
 end
 
 %% IPM
