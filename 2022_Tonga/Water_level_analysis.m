@@ -5,8 +5,8 @@ addpath matlab_datafiles/
 addpath('../tsunami_library')
 
 % for high pass filter
-% maxT=1*60*30; %.5 hours is the max period
-maxT=1*60*10; % 10 min is the max period
+maxT=1*60*30; %.5 hours is the max period
+% maxT=1*60*10; % 10 min is the max period
 dt= 60; % The sample rate of one per minute
 n=7;
 
@@ -25,6 +25,9 @@ for i=1
     time= time(~isnan(height_m));
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
+    % write out the water level data
+    [fid] = F_woTimeData(time,height_m_hpf, ...
+        'matlab_datafiles/api_water_levels_m_hpf_T30min.mat');
 
     % plot water level vs raw magnetic field data
     F_waterB_plot(time,height_m_hpf, time_min2, apiZ,...
@@ -56,6 +59,9 @@ for i=1
     time= time(~isnan(height_m));
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
+    % write out the water level data
+    [fid] = F_woTimeData(time,height_m_hpf, ...
+        'matlab_datafiles/hon_water_levels_m_hpf_T30min.mat');
 
      % plot water level vs raw magnetic field data
     F_waterB_plot(time,height_m_hpf, time_min2, honZ, ...
@@ -86,6 +92,9 @@ for i=1
     time= time(~isnan(height_m));
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
+    % write out the water level data
+    [fid] = F_woTimeData(time,height_m_hpf, ...
+        'matlab_datafiles/ipm_water_levels_m_hpf_T30min.mat');
     
     % plot water level vs raw magnetic field data
     F_waterB_plot(time,height_m_hpf, time_min2, ipmZ, ...
@@ -116,6 +125,9 @@ for i=1
     time= time(~isnan(height_m));
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
+    % write out the water level data
+    [fid] = F_woTimeData(time,height_m_hpf, ...
+        'matlab_datafiles/ppt_water_levels_m_hpf_T30min.mat');
 
     % plot water level vs raw magnetic field data
     F_waterB_plot(time,height_m_hpf, time_min2, pptZ, ...
