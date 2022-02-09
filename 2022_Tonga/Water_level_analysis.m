@@ -5,7 +5,7 @@ addpath matlab_datafiles/
 addpath('../tsunami_library')
 
 % for high pass filter
-T= 30;  % max period in minutes
+T= 120;  % max period in minutes
 maxT=1*60*T; 
 dt= 60; % The sample rate of one per minute
 n=7;
@@ -29,10 +29,10 @@ for i=1
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
     % write out the water level data
-    figname = ...
+    fname = ...
         sprintf('matlab_datafiles/%s_water_levels_m_hpf_T%imin.csv',...
         station, T)
-    [fid] = F_woTimeData(time,height_m_hpf, figname);
+    [fid] = F_woTimeData(time,height_m_hpf, fname);
 
     % plot water level vs raw magnetic field data
     figname = ...
@@ -60,6 +60,8 @@ end
 %% CBI
 for i=1
     close all
+    station= 'cbi';
+    stationC= 'CBI';
 
     % load water level data
     load CBI_water_levels.mat
@@ -79,22 +81,31 @@ for i=1
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
     % write out the water level data
-    [fid] = F_woTimeData(time,height_m_hpf, ...
-        'matlab_datafiles/cbi_water_levels_m_hpf_T120min.csv');
+    fname = ...
+        sprintf('matlab_datafiles/%s_water_levels_m_hpf_T%imin.csv',...
+        station, T)
+    [fid] = F_woTimeData(time,height_m_hpf, fname);
 
     % plot water level vs raw magnetic field data
-    F_waterB_plot(time,height_m_hpf, time_min2, cbiZ,...
-        'figures/CBI/water_level_analysis/cbi_whpf_Z_120min.png')
-    F_waterB_plot(time,height_m_hpf, time_min2, cbiH,...
-        'figures/CBI/water_level_analysis/cbi_whpf_H_120min.png')
+    figname = ...
+        sprintf('figures/%s/water_level_analysis/%s_whpf_Z_%imin.png', ...
+        stationC, station, T)
+    F_waterB_plot(time,height_m_hpf, time_min2, cbiZ, figname)
+    figname = ...
+        sprintf('figures/%s/water_level_analysis/%s_whpf_H_%imin.png', ...
+        stationC, station, T)
+    F_waterB_plot(time,height_m_hpf, time_min2, cbiH, figname)
 
     % high pass filter magnetic data
     cbiZ_hpf = F_HPF(maxT, dt, n, cbiZ);
     cbiH_hpf = F_HPF(maxT, dt, n, cbiH);
     
     % plot water level vs raw magnetic field data
+    figname= sprintf(...
+        'figures/%s/water_level_analysis/%s_whpf_Bhpf_%imin.png', ...
+        stationC, station, T)
     F_waterB_3plot(time,height_m_hpf, time_min2, cbiZ_hpf, cbiH_hpf,...
-        'figures/CBI/water_level_analysis/cbi_whpf_Bhpf_120min.png')
+        figname)
 end
 
 %% HON
