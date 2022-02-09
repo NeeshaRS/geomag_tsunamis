@@ -2,9 +2,8 @@
 clc; clear all; close all;
 
 Sc = 0.1:0.1:200;
-maxT=1*60*10; % 10 min is the max period
-% maxT=1*60*30; % 30 min is the max period
-% maxT=1*60*120; % 120 min is the max period
+T= 120;  % max period in minutes
+maxT=1*60*T; 
 
 dt= 60; % The sample rate of one per minute
 waven = 'cgau4';
@@ -42,14 +41,18 @@ for i=1
     load asp_2022-01-15_zh.mat
     whos
 
+    stationC= 'CBI';
+
     % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 13:00:00');
+    etaT= datenum('15-Jan-2022 11:16:45');
 
     local_Z= cbiZ;
     local_H= cbiH;
     remote_H= aspH;
 
-    figlocation= 'figures/CBI/wavelet_analysis/120min_maxT/';
+    figlocation= ...
+    sprintf('figures/%s/wavelet_analysis/%imin_maxT/',...
+        stationC, T);
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
