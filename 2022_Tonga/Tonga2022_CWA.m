@@ -2,7 +2,7 @@
 clc; clear all; close all;
 
 Sc = 0.1:0.1:200;
-T= 120;  % max period in minutes
+T= 30;  % max period in minutes
 maxT=1*60*T; 
 
 dt= 60; % The sample rate of one per minute
@@ -35,10 +35,10 @@ for i=1
         F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT, figlocation);
 end
 
-%% local = CBI, remote = ASP
+%% local = CBI, remote = KAK
 for i=1
     load cbi_2022-01-15_zh.mat
-    load asp_2022-01-15_zh.mat
+    load kak_2022-01-15_zh.mat
     whos
 
     stationC= 'CBI';
@@ -48,7 +48,7 @@ for i=1
 
     local_Z= cbiZ;
     local_H= cbiH;
-    remote_H= aspH;
+    remote_H= kakH;
 
     figlocation= ...
     sprintf('figures/%s/wavelet_analysis/%imin_maxT/',...
