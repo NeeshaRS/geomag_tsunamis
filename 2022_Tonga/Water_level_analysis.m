@@ -5,7 +5,7 @@ addpath matlab_datafiles/
 addpath('../tsunami_library')
 
 % for high pass filter
-T= 30;  % max period in minutes
+T= 120;  % max period in minutes
 maxT=1*60*T; 
 dt= 60; % The sample rate of one per minute
 n=7;
