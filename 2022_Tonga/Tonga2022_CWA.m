@@ -28,7 +28,7 @@ for i=1
     local_H= apiH;
     remote_H= aspH;
 
-    figlocation= 'figures/API/wavelet_analysis/120min_maxT/';
+    figlocation= 'figures/API/wavelet_analysis/30min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -89,15 +89,17 @@ for i=1
     whos
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
-%     etaT= datenum('15-Jan-2022 10:30:00');  
+    % etaT= datenum('15-Jan-2022 10:30:00');  
     % match API's ETA for comparison
     etaT= datenum('15-Jan-2022 05:11:00'); 
+    % skip having an eta
+    etaT= NaN;
 
     local_Z= ctaZ;
     local_H= ctaH;
     remote_H= aspH;
 
-    figlocation= 'figures/CTA/10min_maxT/';
+    figlocation= 'figures/CTA/30min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
