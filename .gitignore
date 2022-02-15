@@ -4,3 +4,7 @@
 
 # ignore plots
 2022_Tonga/figures/
+
+# ignore certain data types
+*.csv
+*.zip

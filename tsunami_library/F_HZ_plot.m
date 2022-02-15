@@ -1,7 +1,6 @@
 function [hzplot] = F_HZ_plot(timearray,Harray, Zarray)
 %F_rawHZ_plot Plot the station's horizontal and vertical magnetic fields
 % (nT).
-%   Detailed explanation goes here
 
 hzplot= figure()
 set(hzplot,'Position',[100 100 1100 600],'PaperPositionMode','auto');

@@ -3,7 +3,7 @@ function [data_f] = F_HPF(maxT, dt, n, data)
 
 % Inputs-
 % maxT: the max period allowed. Given in seconds. 
-% dt: the sample rate [Hz]
+% dt: the number of seconds between data sampling
 % n: order of the Butterworth filter
 % data: the data being filtered
 
