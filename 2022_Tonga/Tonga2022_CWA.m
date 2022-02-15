@@ -2,7 +2,7 @@
 clc; clear all; close all;
 
 Sc = 0.1:0.1:200;
-T= 30;  % max period in minutes
+T= 120;  % max period in minutes
 maxT=1*60*T; 
 
 dt= 60; % The sample rate of one per minute
@@ -56,7 +56,8 @@ for i=1
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT, figlocation);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = CNB, remote = ASP
@@ -68,13 +69,15 @@ for i=1
     % very rough back of the envelope estimate of tsunami arrival @ KAK
 %     etaT= datenum('15-Jan-2022 10:30:00');  
     % match API's ETA for comparison
-    etaT= datenum('15-Jan-2022 05:11:00'); 
+%     etaT= datenum('15-Jan-2022 05:11:00');
+    % skip having an eta
+    etaT= NaN;
 
     local_Z= cnbZ;
     local_H= cnbH;
     remote_H= aspH;
 
-    figlocation= 'figures/CNB/10min_maxT/';
+    figlocation= 'figures/CNB/30min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -91,7 +94,7 @@ for i=1
     % very rough back of the envelope estimate of tsunami arrival @ KAK
     % etaT= datenum('15-Jan-2022 10:30:00');  
     % match API's ETA for comparison
-    etaT= datenum('15-Jan-2022 05:11:00'); 
+%     etaT= datenum('15-Jan-2022 05:11:00'); 
     % skip having an eta
     etaT= NaN;
 
@@ -116,13 +119,16 @@ for i=1
     % very rough back of the envelope estimate of tsunami arrival @ KAK
 %     etaT= datenum('15-Jan-2022 10:30:00');  
     % match API's ETA for comparison
-    etaT= datenum('15-Jan-2022 05:11:00'); 
+%     etaT= datenum('15-Jan-2022 05:11:00'); 
+    % skip having an eta
+    etaT= NaN;
+
 
     local_Z= eyrZ;
     local_H= eyrH;
     remote_H= aspH;
 
-    figlocation= 'figures/EYR/10min_maxT/';
+    figlocation= 'figures/EYR/30min_maxT/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -181,16 +187,26 @@ for i=1
     load kak_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
+    
+    stationC= 'KAK';
 
-    very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 14:00:00');
+    % very rough back of the envelope estimate of tsunami arrival @ KAK
+    % etaT= datenum('15-Jan-2022 14:00:00');
+    % skip having an eta
+    etaT= NaN;
 
     local_Z= kakZ;
     local_H= kakH;
     remote_H= aspH;
+    
+    figlocation= ...
+    sprintf('figures/%s/%imin_maxT/',...
+        stationC, T);
+    addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = KNY, remote = ASP
@@ -198,17 +214,23 @@ for i=1
     load kny_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
+    
+    stationC= 'KNY';
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
 %     etaT= datenum('15-Jan-2022 15:45:00');
     % match API's ETA for comparison
-    etaT= datenum('15-Jan-2022 05:11:00');
+    % etaT= datenum('15-Jan-2022 05:11:00');
+    % skip having an eta
+    etaT= NaN;
 
     local_Z= knyZ;
     local_H= knyH;
     remote_H= aspH;
 
-    figlocation= 'figures/KNY/10min_maxT/';
+    figlocation= ...
+    sprintf('figures/%s/%imin_maxT/',...
+        stationC, T);
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -221,16 +243,26 @@ for i=1
     load mmb_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
+    
+    stationC= 'MMB';
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
-    etaT= datenum('15-Jan-2022 15:00:00');
+    % etaT= datenum('15-Jan-2022 15:00:00');
+    % skip having an eta
+    etaT= NaN;
 
     local_Z= mmbZ;
     local_H= mmbH;
     remote_H= aspH;
+    
+    figlocation= ...
+    sprintf('figures/%s/%imin_maxT/',...
+        stationC, T);
+    addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time_min, etaT);
+        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        remote_H, time_min, etaT, figlocation);
 end
 
 %% local = PPT, remote = ASP
