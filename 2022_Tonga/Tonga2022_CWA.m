@@ -65,6 +65,8 @@ for i=1
     load cnb_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
+    
+     stationC= 'CNB';
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
 %     etaT= datenum('15-Jan-2022 10:30:00');  
@@ -77,7 +79,9 @@ for i=1
     local_H= cnbH;
     remote_H= aspH;
 
-    figlocation= 'figures/CNB/30min_maxT/';
+    figlocation= ...
+    sprintf('figures/%s/%imin_maxT/',...
+        stationC, T);
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -90,6 +94,8 @@ for i=1
     load cta_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
+    
+    stationC= 'CTA';
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
     % etaT= datenum('15-Jan-2022 10:30:00');  
@@ -102,7 +108,9 @@ for i=1
     local_H= ctaH;
     remote_H= aspH;
 
-    figlocation= 'figures/CTA/30min_maxT/';
+    figlocation= ...
+    sprintf('figures/%s/%imin_maxT/',...
+        stationC, T);
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
@@ -115,6 +123,8 @@ for i=1
     load eyr_2022-01-15_zh.mat
     load asp_2022-01-15_zh.mat
     whos
+    
+    stationC= 'EYR';
 
     % very rough back of the envelope estimate of tsunami arrival @ KAK
 %     etaT= datenum('15-Jan-2022 10:30:00');  
@@ -128,7 +138,9 @@ for i=1
     local_H= eyrH;
     remote_H= aspH;
 
-    figlocation= 'figures/EYR/30min_maxT/';
+    figlocation= ...
+    sprintf('figures/%s/%imin_maxT/',...
+        stationC, T);
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
