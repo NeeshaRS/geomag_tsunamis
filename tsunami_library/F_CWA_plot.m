@@ -61,7 +61,8 @@ if ~isnan(etaT)
     line([etaT etaT],[0 400],'LineStyle','--','Color',[0 0 0],'LineWidth',0.25)
 end
 xlim([time(1) time(end)]);
-ylim([0 2*maxT/60]);  
+% ylim([0 2*maxT/60]);
+ylim([0 maxT/60]);
 h=colorbar;
 set(h,'fontsize',14); 
 set(get(h,'ylabel'),'string','nT','fontsize',14);
