@@ -26,6 +26,11 @@ for i=1
     % remove NaNs from water level data
     height_m= height_m(~isnan(height_m))';
     time= time(~isnan(height_m));
+    fname = ...
+        sprintf('figures/%s/water_level_analysis/%s_water_levels.png',...
+        stationC, station)
+    F_water_plot(time,height_m, fname)
+    
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
     % write out the water level data
