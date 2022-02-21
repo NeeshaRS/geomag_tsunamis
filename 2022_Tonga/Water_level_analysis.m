@@ -82,6 +82,10 @@ for i=1
     time= time(~isnan(height_m));
     height_m= height_m(time >= day1 & time < day2);
     time= time(time >= day1 & time < day2);
+    fname = ...
+        sprintf('figures/%s/water_level_analysis/%s_water_levels.png',...
+        stationC, station)
+    F_water_plot(time,height_m, fname)
  
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
@@ -116,6 +120,8 @@ end
 %% HON
 for i=1
     close all
+    station= 'hon';
+    stationC= 'HON';
     % load water level data
     load HON_water_levels_m.mat
     load hon_2022-01-15_zh.mat
@@ -125,6 +131,10 @@ for i=1
     % remove NaNs from water level data
     height_m= height_m(~isnan(height_m))';
     time= time(~isnan(height_m));
+    fname = ...
+        sprintf('figures/%s/water_level_analysis/%s_water_levels.png',...
+        stationC, station)
+    F_water_plot(time,height_m, fname)
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
     % write out the water level data
@@ -161,6 +171,10 @@ for i=1
     % remove NaNs from water level data
     height_m= height_m(~isnan(height_m))';
     time= time(~isnan(height_m));
+    fname = ...
+        sprintf('figures/%s/water_level_analysis/%s_water_levels.png',...
+        stationC, station)
+    F_water_plot(time,height_m, fname)
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
     % write out the water level data
@@ -194,6 +208,8 @@ end
 %% PPT
 for i=1
     close all
+    station= 'ppt';
+    stationC= 'PPT';
     % load water level data
     load PPT_water_levels_m.mat
     load ppt_2022-01-15_zh.mat
@@ -203,6 +219,10 @@ for i=1
     % remove NaNs from water level data
     height_m= height_m(~isnan(height_m))';
     time= time(~isnan(height_m));
+    fname = ...
+        sprintf('figures/%s/water_level_analysis/%s_water_levels.png',...
+        stationC, station)
+    F_water_plot(time,height_m, fname)
     % high pass filter water level data
     height_m_hpf = F_HPF(maxT, dt, n, height_m');
     % write out the water level data

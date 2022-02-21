@@ -15,9 +15,9 @@ function [wplot] = F_water_plot(t_w,data_w, fname)
 %       string of the name for saving the plot
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 wplot= figure()
-set(wplot,'Position',[100 100 1100 600],'PaperPositionMode','auto');
+set(wplot,'Position',[100 100 1100 300],'PaperPositionMode','auto');
 
-plot(t_w, data_w); hold on
+plot(t_w, data_w, 'k'); hold on
 ylabel('wave height variation (m)')
 set(gca, 'FontSize', 16);
 datetick('x');
