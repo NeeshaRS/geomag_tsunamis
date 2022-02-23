@@ -1,4 +1,4 @@
-function [outputArg1,outputArg2] = F_waterB_plot(t_w,data_w, t_b, data_b, fname)
+function [wplot] = F_water_plot(t_w,data_w, fname)
 %F_waterB_plot Plot with two y axes comparing the water sea level height
 %data (m) and the magnetic field data (nT).
 %
@@ -14,20 +14,15 @@ function [outputArg1,outputArg2] = F_waterB_plot(t_w,data_w, t_b, data_b, fname)
 %   fname-
 %       string of the name for saving the plot
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-wbplot= figure()
-set(wbplot,'Position',[100 100 1100 600],'PaperPositionMode','auto');
+wplot= figure()
+set(wplot,'Position',[100 100 1100 300],'PaperPositionMode','auto');
 
-yyaxis left
-plot(t_w, data_w); hold on
+plot(t_w, data_w, 'k'); hold on
 ylabel('wave height variation (m)')
-
-yyaxis right
-plot(t_b, data_b)
 set(gca, 'FontSize', 16);
 datetick('x');
 xlabel('Time (hr:mm UTC)')
-ylabel('magnetic field (nT)')
 
-saveas(wbplot,fname)
+saveas(wplot,fname)
 
 end

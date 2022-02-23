@@ -1,5 +1,5 @@
 %% Clear parameters and set basics
-clc; clear all;
+clc; clear all; close all;
 
 addpath('../tsunami_library')
 
