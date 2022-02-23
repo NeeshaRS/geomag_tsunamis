@@ -117,6 +117,70 @@ for i=1
         figname)
 end
 
+%% CTA
+for i=1
+    close all
+    station= 'cta';
+    stationC= 'CTA';
+    
+    % load water level data
+    load API_water_levels_m.mat
+    load cta_2022-01-15_zh.mat
+    % convert time array to matlab datetime
+    time_min2= datetime(time_min, 'ConvertFrom','datenum');
+    
+    % remove NaNs from water level data
+    height_m= height_m(~isnan(height_m))';
+    time= time(~isnan(height_m));
+    
+    % high pass filter water level data
+    height_m_hpf = F_HPF(maxT, dt, n, height_m');
+
+    % high pass filter magnetic data
+    ctaZ_hpf = F_HPF(maxT, dt, n, ctaZ);
+    ctaH_hpf = F_HPF(maxT, dt, n, ctaH);
+    
+    % plot water level vs raw magnetic field data
+    figname= sprintf(...
+        'figures/%s/%s_whpf_Bhpf_%imin.png', ...
+        stationC, station, T)
+    F_waterB_3plot(time,height_m_hpf, time_min2, ctaZ_hpf, ctaH_hpf,...
+        figname)
+
+end
+
+%% CNB
+for i=1
+    close all
+    station= 'cnb';
+    stationC= 'CNB';
+    
+    % load water level data
+    load API_water_levels_m.mat
+    load cnb_2022-01-15_zh.mat
+    % convert time array to matlab datetime
+    time_min2= datetime(time_min, 'ConvertFrom','datenum');
+    
+    % remove NaNs from water level data
+    height_m= height_m(~isnan(height_m))';
+    time= time(~isnan(height_m));
+    
+    % high pass filter water level data
+    height_m_hpf = F_HPF(maxT, dt, n, height_m');
+
+    % high pass filter magnetic data
+    cnbZ_hpf = F_HPF(maxT, dt, n, cnbZ);
+    cnbH_hpf = F_HPF(maxT, dt, n, cnbH);
+    
+    % plot water level vs raw magnetic field data
+    figname= sprintf(...
+        'figures/%s/%s_whpf_Bhpf_%imin.png', ...
+        stationC, station, T)
+    F_waterB_3plot(time,height_m_hpf, time_min2, cnbZ_hpf, cnbH_hpf,...
+        figname)
+
+end
+
 %% HON
 for i=1
     close all
