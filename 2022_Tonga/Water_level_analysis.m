@@ -6,7 +6,7 @@ addpath('../tsunami_library')
 
 % for high pass filter
 T= 120;  % max period in minutes
-maxT=1*60*T; 
+maxT=1*120*T; 
 dt= 60; % The sample rate of one per minute
 n=7;
 
@@ -181,6 +181,73 @@ for i=1
 
 end
 
+%% EYR
+for i=1
+    close all
+    station= 'eyr';
+    stationC= 'EYR';
+    
+    % load water level data
+    load API_water_levels_m.mat
+    load eyr_2022-01-15_zh.mat
+    % convert time array to matlab datetime
+    time_min2= datetime(time_min, 'ConvertFrom','datenum');
+    
+    % remove NaNs from water level data
+    height_m= height_m(~isnan(height_m))';
+    time= time(~isnan(height_m));
+    
+    % high pass filter water level data
+    height_m_hpf = F_HPF(maxT, dt, n, height_m');
+
+    % high pass filter magnetic data
+    eyrZ_hpf = F_HPF(maxT, dt, n, eyrZ);
+    eyrH_hpf = F_HPF(maxT, dt, n, eyrH);
+    
+    % plot water level vs raw magnetic field data
+    figname= sprintf(...
+        'figures/%s/%s_whpf_Bhpf_%imin.png', ...
+        stationC, station, T)
+    F_waterB_3plot(time,height_m_hpf, time_min2, eyrZ_hpf, eyrH_hpf,...
+        figname)
+
+end
+
+%% KAK
+for i=1
+    close all
+    station= 'kak';
+    stationC= 'KAK';
+
+    % load water level data
+    load CBI_water_levels.mat
+    load kak_2022-01-15_zh.mat
+    % convert time array to matlab datetime
+    time_min2= datetime(time_min, 'ConvertFrom','datenum');
+    
+    day1= datetime(2022,01,15);
+    day2= datetime(2022,01,16);
+
+    % remove NaNs from water level data
+    height_m= height_m(~isnan(height_m))';
+    time= time(~isnan(height_m));
+    height_m= height_m(time >= day1 & time < day2);
+    time= time(time >= day1 & time < day2);
+ 
+    % high pass filter water level data
+    height_m_hpf = F_HPF(maxT, dt, n, height_m');
+
+    % high pass filter magnetic data
+    kakZ_hpf = F_HPF(maxT, dt, n, kakZ);
+    kakH_hpf = F_HPF(maxT, dt, n, kakH);
+    
+    % plot water level vs raw magnetic field data
+    figname= sprintf(...
+        'figures/%s/%s_whpf_Bhpf_%imin.png', ...
+        stationC, station, T)
+    F_waterB_3plot(time,height_m_hpf, time_min2, kakZ_hpf, kakH_hpf,...
+        figname)
+end
 %% HON
 for i=1
     close all
