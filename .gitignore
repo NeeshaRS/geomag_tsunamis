@@ -8,3 +8,4 @@
 # ignore certain data types
 *.csv
 *.zip
+2022_Tonga/matlab_datafiles/*
