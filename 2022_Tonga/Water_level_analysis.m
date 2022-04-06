@@ -1,7 +1,8 @@
 %% Clear parameters and set basics
 clc; clear all; close all;
 
-addpath matlab_datafiles/
+addpath matlab_datafiles/mat_files/
+addpath matlab_datafiles/csv_files/
 addpath('../tsunami_library')
 
 % for high pass filter

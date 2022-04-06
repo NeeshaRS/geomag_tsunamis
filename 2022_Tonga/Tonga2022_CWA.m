@@ -2,7 +2,7 @@
 clc; clear all; close all;
 
 Sc = 0.1:0.1:200;
-T= 120;  % max period in minutes
+T= 30;  % max period in minutes
 maxT=1*60*T; 
 
 dt= 60; % The sample rate of one per minute
@@ -10,7 +10,8 @@ waven = 'cgau4';
 n=7;
 daymin=24*60;
 
-addpath matlab_datafiles/
+addpath matlab_datafiles/mat_files/
+addpath matlab_datafiles/csv_files/
 addpath('../tsunami_library')
 
 disp('ready to go')
