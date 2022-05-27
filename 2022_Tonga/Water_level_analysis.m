@@ -5,7 +5,7 @@ addpath matlab_datafiles/mat_files/
 addpath matlab_datafiles/csv_files/
 addpath('../tsunami_library')
 
-% for high pass filter
+% for high or band pass filter
 T=120; % max period for names
 maxT= 60*120; % max period in minutes
 minT= 60*15; % min period in minutes
