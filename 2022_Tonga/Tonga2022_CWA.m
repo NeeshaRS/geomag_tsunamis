@@ -3,7 +3,8 @@ clc; clear all; close all;
 
 Sc = 0.1:0.1:200;
 T= 30;  % max period in minutes
-maxT=1*60*T; 
+minT=1*60*15; % min period in s
+maxT=1*60*T;  % max period in s
 
 dt= 60; % The sample rate of one per minute
 waven = 'cgau4';
@@ -31,13 +32,14 @@ for i=1
     local_H= apiH;
     remote_H= aspH;
 
-    figlocation= ...
-    sprintf('figures/%s/wavelet_analysis/%imin_maxT/',...
-        stationC, T);
+%     figlocation= ...
+%     sprintf('figures/%s/wavelet_analysis/%imin_maxT/',...
+%         stationC, T);
+    figlocation= 'figures/API/wavelet_analysis/15min-30min_T/';
     addpath(figlocation)
 
     [W_local_Zw1,CWA_plot,zoom_plot, maxamp, maxtime] = ...
-        F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, ...
+        F_CWA(Sc, [minT maxT], dt, waven, n, local_Z, local_H, ...
         remote_H, time_min, etaT, figlocation);
 end
 
