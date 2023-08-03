@@ -75,19 +75,23 @@ end
 %% Amplitude as a function of ocean depth
 for i=1
     eta_1m = 1; % [m]
+    eta_0p5m = 0.5; % [m]
     eta_0p1m = 0.1; % [m]
     bz_1m = eta_1m * c ./(c + i*cd) .* (Fz*(h.^(-1)));
+    bz_0p5m = eta_0p5m * c ./(c + i*cd) .* (Fz*(h.^(-1)));
     bz_0p1m = eta_0p1m * c ./(c + i*cd) .* (Fz*(h.^(-1)));
 
     % plot the induced magnetic field amplitude as a function of ocean depth
     figure(3)
     plot(h, bz_1m, 'Color', '#331832', 'LineWidth',2)
     hold on
+    plot(h, bz_0p5m, 'Color', '#724E91', 'LineWidth',2)
     plot(h, bz_0p1m, 'Color', '#F0544F', 'LineWidth',2)
     xlim([0 7000])
     grid on
 
-    legend('Sea surface displace of 1 m', 'Sea surface displace of 0.1 m')
+    legend('Sea surface displace of 1 m', 'Sea surface displace of 0.5 m',...
+        'Sea surface displace of 0.1 m', 'Location', 'northoutside')
 
     % set font size & axis labels
     set(gca, 'FontSize', 16);
