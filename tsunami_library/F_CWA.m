@@ -1,9 +1,12 @@
-function [W_local_Zw1, CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA(Sc, maxT, dt, waven, n, local_Z, local_H, remote_H, time, etaT, figlocation)
+function [W_local_Zw1, CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA(Sc, ...
+    maxT, dt, waven, n, local_Z, local_H, remote_H, time, etaT, figlocation)
 % Goal is to perform the crosswavelet analysis on the data.
 
 % Inputs-
 % Sc: the range of frequencies. 
-% maxT: the max period allowed. Given in seconds.
+% maxT: the max period allowed. Given in seconds. If it is a vector with
+% two values, the first value should be the minimum period and the second
+% should be the max period.
 % dt: the sample rate [Hz]
 % waven: the type of Mother wavelet to use
 % n: order of the Butterworth filter
@@ -20,10 +23,18 @@ function [W_local_Zw1, CWA_plot,zoom_plot, maxamp, maxtime] = F_CWA(Sc, maxT, dt
 % A figure of the resulting periodograms (full time span & zoomed in)
 
 disp('starting high pass filter'); tic;
-% High pass filter
-[local_Zf] = F_HPF(maxT, dt, n, local_Z);
-[local_Hf] = F_HPF(maxT, dt, n, local_H);
-[remote_Hf] = F_HPF(maxT, dt, n, remote_H);
+if length(maxT) == 1
+    % High pass filter
+    [local_Zf] = F_HPF(maxT, dt, n, local_Z);
+    [local_Hf] = F_HPF(maxT, dt, n, local_H);
+    [remote_Hf] = F_HPF(maxT, dt, n, remote_H);
+elseif length(maxT) == 2
+    % Band pass filter
+    [local_Zf] = F_BPF(maxT(1), maxT(2), dt, n, local_Z);
+    [local_Hf] = F_BPF(maxT(1), maxT(2), dt, n, local_H);
+    [remote_Hf] = F_BPF(maxT(1), maxT(2), dt, n, remote_H);
+    maxT= maxT(2)
+end
 
 toc; 
 disp('high pass filter complete')

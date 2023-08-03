@@ -5,14 +5,15 @@ addpath matlab_datafiles/mat_files/
 addpath matlab_datafiles/csv_files/
 addpath('../tsunami_library')
 
-% for high pass filter
-T= 120;  % max period in minutes
-maxT=1*120*T; 
+% for high or band pass filter
+T=120; % max period for names
+maxT= 60*120; % max period in minutes
+minT= 60*15; % min period in minutes
 dt= 60; % The sample rate of one per minute
 n=7;
 
 disp('initial parameters set')
-%% API
+%% API- HPF
 for i=1
     close all
     station= 'api';
@@ -63,6 +64,56 @@ for i=1
 
 end
 
+%% API- BPF
+for i=1
+    close all
+    station= 'api2';
+    stationC= 'API';
+
+    % load water level data
+    load API_2_water_levels_m.mat
+    load api_2022-01-15_zh.mat
+    % convert time array to matlab datetime
+    time_min2= datetime(time_min, 'ConvertFrom','datenum');
+    
+    % remove NaNs from water level data
+    height_m= height_m(~isnan(height_m))';
+    time= time(~isnan(height_m));
+    fname = ...
+        sprintf('figures/%s/water_level_analysis/%s_water_levels.png',...
+        stationC, station)
+    F_water_plot(time,height_m, fname)
+    
+    % high pass filter water level data
+    height_m_bpf = F_BPF(minT, maxT, dt, n, height_m');
+    % write out the water level data
+    fname = ...
+        sprintf('matlab_datafiles/%s_water_levels_m_bpf_T%imin.csv',...
+        station, T)
+    [fid] = F_woTimeData(time,height_m_bpf, fname);
+
+    % plot water level vs raw magnetic field data
+    figname = ...
+        sprintf('figures/%s/water_level_analysis/%s_wbpf_Z_%imin.png', ...
+        stationC, station, T)
+    F_waterB_plot(time,height_m_bpf, time_min2, apiZ, figname)
+    figname = ...
+        sprintf('figures/%s/water_level_analysis/%s_wbpf_H_%imin.png', ...
+        stationC, station, T)
+    F_waterB_plot(time,height_m_bpf, time_min2, apiH,figname)
+
+    % high pass filter magnetic data
+    apiZ_bpf = F_BPF(minT, maxT, dt, n, apiZ);
+    apiH_bpf = F_BPF(minT, maxT, dt, n, apiH);
+    
+    % plot water level vs raw magnetic field data
+    figname= sprintf(...
+        'figures/%s/water_level_analysis/%s_wbpf_Bhpf_%imin.png', ...
+        stationC, station, T)
+    F_waterB_3plot(time,height_m_bpf, time_min2, apiZ_bpf, apiH_bpf,...
+        figname)
+
+end
 %% CBI
 for i=1
     close all
